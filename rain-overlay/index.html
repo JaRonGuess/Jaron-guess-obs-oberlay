@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JaRon Guess OBS Overlay</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <svg id="frame-layer" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="redStroke" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#ff5252" />
+        <stop offset="40%" stop-color="#ff1200" />
+        <stop offset="100%" stop-color="#ff3d3d" />
+      </linearGradient>
+
+      <filter id="redGlow" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+        <feColorMatrix in="blur" type="matrix"
+          values="1 0 0 0 0
+                  0 0.25 0 0 0
+                  0 0 0 0 0
+                  0 0 0 1 0" result="redBlur" />
+        <feMerge>
+          <feMergeNode in="redBlur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+
+      <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+        <feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#ff1200" flood-opacity="0.75" />
+      </filter>
+    </defs>
+
+    <g id="overlay-art" filter="url(#softShadow)">
+      <rect x="174" y="96" width="492" height="440" rx="174" ry="174" fill="none" stroke="url(#redStroke)" stroke-width="10" />
+      <rect x="190" y="112" width="460" height="408" rx="158" ry="158" fill="none" stroke="#fff2f2" stroke-opacity="0.92" stroke-width="3" />
+
+      <path d="M168 538 L650 538 L650 597 L613 632 L168 632 Z"
+            fill="rgba(0,0,0,0.55)" stroke="url(#redStroke)" stroke-width="7" />
+      <text x="410" y="608" text-anchor="middle">CHAT</text>
+
+      <path d="M192 646 L642 646 L642 922 L596 970 L192 970 L192 646 Z"
+            fill="none" stroke="url(#redStroke)" stroke-width="8" />
+
+      <path d="M728 560 L1796 560 L1828 590 L1828 890 L1776 940 L728 940 L728 560 Z"
+            fill="none" stroke="url(#redStroke)" stroke-width="8" />
+      <path d="M748 578 L1780 578 L1806 603 L1806 872 L1760 920 L748 920 L748 578 Z"
+            fill="none" stroke="#ffd6d6" stroke-opacity="0.7" stroke-width="2.5" />
+
+      <g id="logo-badge" transform="translate(1555 58)">
+        <path d="M48 0 L246 0 L286 30 L286 188 L238 236 L48 236 L0 188 L0 46 Z"
+              fill="rgba(12,0,0,0.72)" stroke="url(#redStroke)" stroke-width="7" />
+        <text x="144" y="112" text-anchor="middle" class="logo-text top">JARON</text>
+        <text x="144" y="182" text-anchor="middle" class="logo-text bottom">GUESS</text>
+        <text x="230" y="62" text-anchor="middle" class="logo-mark">?</text>
+      </g>
+    </g>
+  </svg>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
