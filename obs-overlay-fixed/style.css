@@ -1,0 +1,68 @@
+:root {
+  --text-main: #fff5f5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+body {
+  position: relative;
+  font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
+}
+
+#bg-canvas,
+#frame-layer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#bg-canvas {
+  z-index: 1;
+  pointer-events: none;
+}
+
+#frame-layer {
+  z-index: 2;
+  pointer-events: none;
+}
+
+text {
+  fill: var(--text-main);
+  letter-spacing: 4px;
+  paint-order: stroke;
+  stroke: rgba(50, 0, 0, 0.78);
+  stroke-width: 4px;
+  user-select: none;
+  filter: url(#redGlow);
+}
+
+.panel-label {
+  font-size: 74px;
+}
+
+.logo-text.top,
+.logo-text.bottom {
+  font-size: 62px;
+}
+
+.logo-text.bottom {
+  fill: #ff3a2b;
+}
+
+.logo-mark {
+  font-size: 116px;
+  fill: #ff2f1f;
+  stroke-width: 5px;
+}
