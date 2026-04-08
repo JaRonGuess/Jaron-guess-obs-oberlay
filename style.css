@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: transparent; /* Makes it clear in OBS */
+    color: white;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+}
+
+.scene {
+    display: none; /* Hides all scenes by default */
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+}
+
+.scene.active {
+    display: flex; /* Only shows the active scene */
+}
+
+/* Neon Red Border Effect */
+.neon-red {
+    border: 4px solid #ff0000;
+    box-shadow: 0 0 15px #ff0000, inset 0 0 10px #ff0000;
+}
+
+/* Gameplay Area - Scaled bigger as requested */
+.gameplay-border {
+    width: 1500px;
+    height: 843px; /* 16:9 ratio */
+    margin: 20px;
+}
+
+/* Sidebar for Cam and Chat */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.camera-circle {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: black;
+}
+
+.chat-area {
+    width: 300px;
+    height: 500px;
+    background: rgba(0,0,0,0.8);
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+}
