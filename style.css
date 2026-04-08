@@ -1,58 +1,36 @@
-body {
-    margin: 0;
-    padding: 0;
-    background-color: transparent; /* Makes it clear in OBS */
-    color: white;
-    font-family: 'Arial', sans-serif;
-    overflow: hidden;
-}
+/* --- BACKGROUND QUESTION MARKS --- */
 
-.scene {
-    display: none; /* Hides all scenes by default */
-    width: 1920px;
-    height: 1080px;
-    position: relative;
-}
-
-.scene.active {
-    display: flex; /* Only shows the active scene */
-}
-
-/* Neon Red Border Effect */
-.neon-red {
-    border: 4px solid #ff0000;
-    box-shadow: 0 0 15px #ff0000, inset 0 0 10px #ff0000;
-}
-
-/* Gameplay Area - Scaled bigger as requested */
-.gameplay-border {
-    width: 1500px;
-    height: 843px; /* 16:9 ratio */
-    margin: 20px;
-}
-
-/* Sidebar for Cam and Chat */
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding-top: 20px;
-}
-
-.camera-circle {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: black;
-}
-
-.chat-area {
-    width: 300px;
-    height: 500px;
-    background: rgba(0,0,0,0.8);
-}
-
-iframe {
+/* The container wrapper, layered behind everything inside the overlay */
+#background-wrapper {
+    position: fixed; /* Always covers the screen and stays relative to OBS */
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    background: transparent; /* Overlay over whatever background OBS has, content inside is transparent */
+    z-index: -1; /* Layer *below* everything else *inside the overlay*, but *above* OBS sources *below the overlay* */
+    overflow: hidden; /* Prevent question marks from making scrollbars if they go off-screen */
+    pointer-events: none; /* Let clicks pass through to other overlay elements or OBS sources */
+}
+
+/* Styling for individual question mark elements */
+.question-mark {
+    position: absolute; /* Positioned relative to #background-wrapper */
+    color: rgba(255, 0, 0, 0.6); /* Slightly faded red, consistent with original images */
+    font-size: 1.5rem; /* Adjustable size */
+    pointer-events: none; /* Ensure no interaction */
+    animation: floating 8s ease-in-out infinite; /* Apply the animation for 8 seconds, looping forever */
+}
+
+/* --- THE FLOATING ANIMATION --- */
+/* Defines keyframes for the movement and transparency changes */
+@keyframes floating {
+    0%, 100% {
+        transform: translate(0, 0); /* Start and end in the original random position */
+        opacity: 0.6; /* Slight initial transparency variation */
+    }
+    50% {
+        transform: translate(20px, -20px); /* Move diagonally slightly in the middle */
+        opacity: 1; /* More visible at the halfway point */
+    }
 }
